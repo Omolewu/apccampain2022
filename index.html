@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osun APC Campaign 2022</title>
+</head>
+<style>
+     .bg-c{
+         background-color: rgb(4 21 64)
+     }
+</style>
+<body>
+    <div class="container-fluid bg-c">
+        <div class="container p-5">
+            <div class="row justify-content-center mt-5">
+                <!-- <h3 class="text-warning text-center my-5">You're Welcome to Osun State APC 2023 Campaign Website</h3> -->
+                <div class="col-md-6 col-sm-10 mt-5">
+
+                    <!-- Carousel -->
+<div id="demo" class="carousel slide mt-2" data-bs-ride="carousel">
+
+    <!-- Indicators/dots -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+    </div>
+  
+    <!-- The slideshow/carousel -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="Images/cir.png" alt="Los Angeles" class="d-block w-100">
+      </div>
+      <div class="carousel-item">
+        <img src="Images/scre.webp" alt="Chicago" class="d-block w-100">
+      </div>
+      <div class="carousel-item">
+        <img src="Images/vote (1).jpg" alt="New York" class="d-block w-100">
+      </div>
+    </div>
+  
+    <!-- Left and right controls/icons -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+
+                </div>
+                <div class="col-md-6 mt-3 col-sm-10">
+                    <div class="text-center ">
+                     <img src="Images/logo.png"  class="img-fluid" alt="">
+                        <p class="mt-2 text-warning" ><i>Osun State Apc 2022</i></p>
+                    </div>
+                    <form action="" id="logform">
+                        <div class="form-floating mt-2">
+                            <input type="text" name="username" placeholder="Username" class="form-control" id="">
+                            <label for="username">Username</label>
+                        </div>
+                        <strong class="text-danger" id="username_error"></strong>
+                        <div class="form-floating mt-2">
+                            <input type="password" name="password" placeholder="Username" class="form-control " id="">
+                            <label for="password">Password</label>
+                        </div>
+                        <strong class="text-danger" id="password_error"></strong>
+                    <input type="submit" value="Login" class="btn  btn-success form-control btn-lg mt-2" >
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script>
+
+      // Get my elements
+      let form = document.getElementById('logform');
+      let username = form['username'];
+      let password = form['password'];
+
+
+      // functions
+
+      // display error
+      function errors(id, message){
+        id =document.getElementById(id);
+        id.innerHTML = message
+      }
+
+      // validations 
+      function username_validate (username){
+        let pattern = /^[a-zA-Z]/;
+        if (username.value.trim() == ''  ||  username.value.trim() == null) {
+          errors("username_error", "Username cannot be Empty")
+          return false
+        }
+        if (!(pattern.test(username.value))) {
+          errors("username_error", "Username cannot start with number")
+          return false
+        }
+        return true
+      }
+
+
+      function password_validate (password){
+        if (password.value.trim() == ''  ||  password.value.trim() == null) {
+          errors("password_error", "Password cannot be Empty")
+          return false
+        }
+        if( password.value.length < 6){
+          errors("password_error", "Password must be equal to six character or more")
+          return false
+        }
+        return true
+      }
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        
+       username =  username_validate(username)
+        password = password_validate(password)
+
+        if (username === true  && password === true) {
+          setTimeout( window.open('welcome.html'), 3000)
+         
+        }
+      })
+    </script>
+</body>
+</html>
