@@ -1,6 +1,10 @@
+<? 
+ session_start();
+ echo $_SESSION['name'];
+
+?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
@@ -20,8 +24,8 @@
             <div class="col-md-6 col-sm-10">
                 <h3 class="text-center text-warning">Click on the button below to Add New Users</h3>
                 <div class="buttons mt-3">
-                     <button name="" class="btn text-center btn-success mx-5 my-3">Add New User</button>
-                <a href="logout.php" class="text-center btn btn-warning mx-5 my-3">Log Out</a>
+                  <a href="registration.php" class="text-center btn btn-success mx-5 my-3">Add User</a>
+                  <a href="logout.php" class="text-center btn btn-warning mx-5 my-3">Log Out</a>
                 </div>
                
             </div>
