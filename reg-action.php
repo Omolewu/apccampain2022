@@ -55,7 +55,7 @@ if (empty(treat($res['card']))) {
 } else {
     $card = treat($res['card']);
 }
-$slug = str_replace(' ', '-', $fullname . '-' . $phone . '-' . $lg);
+$slug = str_replace(' ', '-', $fullname . '-' . $lg);
 if (!$response) {
     $check = $dbc->prepare("SELECT * FROM members WHERE card_no =?");
     $check->bind_param('s', $card);
@@ -64,8 +64,9 @@ if (!$response) {
     if ($result->num_rows > 0) {
         $response['exist'] = "User With this Voters card Have been Added.";
     } else {
-        $insert = $dbc->prepare("INSERT INTO members(fullname, phone, lg, ward, poll_unit, card_no, vote, reason, comment, slug) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ");
-        $insert->bind_param('ssssssssss', $fullname, $phone, $lg, $ward, $poll, $card, $vote, $reason, $comment, $slug);
+        $agentid = $_SESSION['id'];
+        $insert = $dbc->prepare("INSERT INTO members(fullname, phone, lg, ward, poll_unit, card_no, vote, reason, comment, slug, agent_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ");
+        $insert->bind_param('sssssssssss', $fullname, $phone, $lg, $ward, $poll, $card, $vote, $reason, $comment, $slug, $agentid);
         if ($insert->execute()) {
             $response['success'] = "Form Submitted Successfully.";
         }

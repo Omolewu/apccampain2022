@@ -28,8 +28,9 @@ if (!$response) {
     $result = $check->get_result();
     if ($result->num_rows > 0) {
         $get = $result->fetch_assoc();
-        $response[$_SESSION['id']] = $get['id'];
-        $response[$_SESSION['username']] = $get['username'];
+        $_SESSION['id'] = $get['id'];
+        $_SESSION['username'] = $get['username'];
+        $_SESSION['role'] = $get['role'];
         $response['success'] = "Access Granted";
         $response['role'] = $get['role'];
     } else {

@@ -1,25 +1,76 @@
 <?php
 require 'header.php';
 require('../inc/db.php');
-$sql = "SELECT * FROM members";
-$result = $dbc->query($sql);
-$total_mem = $result-> num_rows;
-if ($result->num_rows > 0) {
-    $allmembers = $result->fetch_all(MYSQLI_ASSOC);
-}
-
+require('inc/usersserver.php')
 ?>
 <!-- <div class="wrapper"> -->
 <!-- Preloader -->
-<div class="preloader flex-column justify-content-center align-items-center">
+<!-- <div class="preloader flex-column justify-content-center align-items-center">
     Osun APC Campaign 2020
-</div>
-<?php require('inc/nav-section.php'); ?>
+</div> -->
+<?php require('inc/nav-section.php');
+?>
 <!-- Tabable-->
 <section class="content mt-4">
     <div class="container-fluid ">
         <div class="row">
             <div class="col-12">
+                <form action="index.php" method="post">
+                    <div class="row justify-content-center">
+                        <div class="col-md-2 col-sm-10 ">
+                            <div class="form-group">
+                                <select name="agent" class="form-control">
+                                    <option value="">Select Agent</option>
+                                    <?php
+                                    if (count($allagent) > 0) {
+                                        foreach ($allagent as $agent) {
+                                            $username = $agent['username'];
+                                            $id = $agent['id'];
+                                            echo "<option value='$id'>$username</option>";
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-10">
+                            <div class="form-group">
+                                <select name="ward" class="form-control" id="">
+                                    <option value="">Select Ward</option>
+                                    <?php
+                                    if (count($allwards) > 0) {
+                                        foreach ($allwards as $ward) {
+                                            $ward = $ward['ward'];
+
+                                            echo "<option value='$ward'>$ward</option>";
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2  col-sm-10">
+                            <div class="form-group">
+                                <select name="unit" class="form-control" id="">
+                                    <option value="">Select Unit</option>
+                                    <?php
+                                    if (count($allpolls) > 0) {
+                                        foreach ($allpolls as $polls) {
+                                            $polls = $polls['poll_unit'];
+                                            echo "<option value='$polls'>$polls</option>";
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-1  col-sm-8">
+                            <div class="form-group">
+                                <button type="submit" name="search" class="form-control btn btn-primary"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title"> All Registered Members</h3>
